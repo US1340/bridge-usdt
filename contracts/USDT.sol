@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./OpenZeppelin/Ownable.sol";
-import "./OpenZeppelin/IERC20.sol";
-import "./OpenZeppelin/IERC20Metadata.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 
 contract USDT is Ownable, IERC20, IERC20Metadata {
     mapping(address => uint256) private _balances;

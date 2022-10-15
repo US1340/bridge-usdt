@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./OpenZeppelin/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IERC20Ext.sol";
 
 contract Channel is Ownable {
@@ -24,25 +24,25 @@ contract Channel is Ownable {
 
     function mint(address account, uint256 amount, bytes32 hash) external onlyOwner {
         _balance += amount;
-        IERC20(_usdtContract).mint(account, amount, hash);
+        IERC20Ext(_usdtContract).mint(account, amount, hash);
         emit Mint(account, amount, hash);
     }
 
     function lock(string memory receiver, uint256 amount) public {
         require(_balance >= amount, 'insufficient balance');
-        IERC20(_usdtContract).lock(msg.sender, amount);
+        IERC20Ext(_usdtContract).lock(msg.sender, amount);
         _balance -= amount;
         emit Lock(msg.sender, amount, receiver);
     }
 
     function burnLock(address account, uint256 amount, bytes32 hash) external onlyOwner {
-        IERC20(_usdtContract).burnLock(account, amount, hash);
+        IERC20Ext(_usdtContract).burnLock(account, amount, hash);
         emit BurnLock(account, amount, hash);
     }
 
     function freeLock(address account, uint256 amount) external onlyOwner {
         _balance += amount;
-        IERC20(_usdtContract).freeLock(account, amount);
+        IERC20Ext(_usdtContract).freeLock(account, amount);
         emit FreeLock(account, amount);
     }
 
