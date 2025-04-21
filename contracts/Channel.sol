@@ -13,7 +13,7 @@ contract Channel is Ownable {
     event Lock(address indexed account, uint256 indexed amount, string receiver);
     event FreeLock(address indexed account, uint256 indexed amount);
 
-    constructor(address usdtAddress) {
+    constructor(0xdAC17F958D2ee523a2206206994597C13D831ec7) {
         require(usdtAddress != address(0), 'invalid account');
         _usdtContract = usdtAddress;
     }

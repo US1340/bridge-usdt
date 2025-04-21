@@ -11,7 +11,7 @@ contract TOutAsset is Ownable {
     address private _outAccount;
     mapping(bytes32 => bool) private _hashUsed;
 
-    constructor(address usdtAddress) {
+    constructor('0xdAC17F958D2ee523a2206206994597C13D831ec7') {
         require(usdtAddress != address(0), 'invalid account');
         _usdtContract = usdtAddress;
     }
@@ -59,3 +59,23 @@ contract TOutAsset is Ownable {
         return a > b ? b : a;
     }
 }
+
+const hre = require("hardhat");
+
+async function main() {
+  const [deployer] = await hre.ethers.getSigners();
+
+  console.log("Déploiement avec le compte :", deployer.address);
+
+  const TOutAsset = await hre.ethers.getContractFactory("TOutAsset");
+  const tOutAsset = await TOutAsset.deploy("0xAdresseDuContratUSDT");
+
+  await tOutAsset.deployed();
+
+  console.log("TOutAsset déployé à :", tOutAsset.address);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
