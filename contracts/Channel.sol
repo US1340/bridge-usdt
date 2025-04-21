@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^"0.8.4";
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IERC20Ext.sol";
@@ -8,13 +8,13 @@ contract Channel is Ownable {
     address private immutable _usdtContract;
     uint256 private _balance;
 
-    event Mint(address indexed account, uint256 indexed amount, bytes32 hash);
-    event BurnLock(address indexed account, uint256 indexed amount, bytes32 hash);
-    event Lock(address indexed account, uint256 indexed amount, string receiver);
-    event FreeLock(address indexed account, uint256 indexed amount);
+    event Mint(address indexed account, uint256 amount, bytes32 hash);
+    event BurnLock(address indexed account, uint256 amount, bytes32 hash);
+    event Lock(address indexed account, uint256 amount, string receiver);
+    event FreeLock(address indexed account, uint256 amount);
 
-    constructor(0xdAC17F958D2ee523a2206206994597C13D831ec7) {
-        require(usdtAddress != address(0), 'invalid account');
+    constructor(address usdtAddress) {
+        require(usdtAddress != address(0xdAC17F958D2ee523a2206206994597C13D831ec7), 'invalid account');
         _usdtContract = usdtAddress;
     }
 
