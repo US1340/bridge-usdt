@@ -1,4 +1,7 @@
 {
     "workbench.editor.enablePreviewFromCodeNavigation": true,
-    "workbench.editor.enablePreviewFromQuickOpen": true
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "cSpell.words": [
+        "ICPLAZA"
+    ]
 }
